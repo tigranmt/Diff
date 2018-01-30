@@ -79,10 +79,10 @@ fn run(arguments : &HashMap<String,String>)
     let mut opt1 = arguments.get(STR1);
     let mut opt2 = arguments.get(STR2);
 
-    ///Init presenter: current one is a stdout one. 
+    //Init presenter: current one is a stdout one. 
     let mut presenter = DiffPresenter::new(Box::new(std::io::stdout()));  
 
-    ///Comparing strings  
+    //Comparing strings  
     if  opt1.is_some() && opt2.is_some()
     {       
         let mut sd_string = StringDiff::new();  
@@ -96,7 +96,7 @@ fn run(arguments : &HashMap<String,String>)
         let _ = presenter.header(&_old, &_new);
         let _ = presenter.present(&_old, &_new, 0, &diff);
     }
-    ///Comparing files
+    //Comparing files
     else 
     {
         opt1 = arguments.get(FILE1);

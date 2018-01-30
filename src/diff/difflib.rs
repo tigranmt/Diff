@@ -132,7 +132,7 @@ impl StringDiff
         }
        
         
-        ///init bigger matrix
+        //init bigger matrix
         if row_count > self.mtx.r_tot_cnt || column_count > self.mtx.c_tot_cnt
         {               
             self.mtx        =  Matrix::new(row_count, column_count);
@@ -202,12 +202,12 @@ impl StringDiff
         for (i, o_ch) in _old.chars().enumerate().take(self.mtx.r_cnt-1) {               
             for (j, n_ch) in _new.chars().enumerate().take(self.mtx.c_cnt-1) {     
                 if o_ch == n_ch {           
-                    ///No change            
+                    //No change            
                     self.mtx[(i+1, j+1)] =  self.mtx[(i, j)];        
                     self.directions[(i+1, j+1)]= DiffOperation::None;                                                                                          
                 }
                 else {                    
-                    ///Change 
+                    //Change 
                     self.mtx[(i+1, j+1)] =  min(self.mtx[(i, j)], min(self.mtx[(i, j+1)], self.mtx[(i+1, j)])) + 1;                
                     self.directions[(i+1, j+1)] =  self.get_curdir(i,j);  
                 }
