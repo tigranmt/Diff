@@ -4,7 +4,7 @@
     use std::ops::{Index,IndexMut};
 
 
-    ///Matrix for tracing difference durign single comparison
+    ///Matrix for tracing difference during single comparison
     pub struct Matrix<T>
         where T : Clone
     {
