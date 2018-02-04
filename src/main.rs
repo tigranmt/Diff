@@ -142,7 +142,7 @@ fn run(arguments : &HashMap<String,String>)
                     let line1_trimed = trim_newline(&mut line1); 
                     let line2_trimed = trim_newline(&mut line2); 
 
-                    ///Get difference 
+                    //Get difference 
                     let result = sd_file.get_diff(&line1_trimed, &line2_trimed);  
 
                     //Present
