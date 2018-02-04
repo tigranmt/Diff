@@ -4,7 +4,7 @@ A naive implementation of [Myers shortest edit distance](https://blog.jcoglan.co
 
 Files are: 
 
-- [main.rs](https://blog.jcoglan.com/2017/02/12/the-myers-diff-algorithm-part-1/) https://github.com/tigranmt/Diff/blob/master/src/main.rs - processing of command line arguments, difference invokation and eventual presentation 
+- [main.rs](https://github.com/tigranmt/Diff/blob/master/src/main.rs) - processing of command line arguments, difference invokation and eventual presentation 
 - [difflib.rs](https://github.com/tigranmt/Diff/blob/master/src/diff/difflib.rs) - algorithm implementation 
 - [presenter.rs](https://github.com/tigranmt/Diff/blob/master/src/diff/presenter.rs) - implementation of built-in diff presenter and definition of base presenter as well. 
 
