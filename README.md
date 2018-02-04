@@ -2,6 +2,11 @@
 Diff for text files.
 A naive implementation of [Myers shortest edit distance](https://blog.jcoglan.com/2017/02/12/the-myers-diff-algorithm-part-1/) algorithm. 
 
+[![Build Status](https://travis-ci.org/tigranmt/Diff.svg?branch=master)](https://travis-ci.org/tigranmt/Diff)
+
+
+
+
 Files are: 
 
 - [main.rs](https://github.com/tigranmt/Diff/blob/master/src/main.rs) - processing of command line arguments, difference invokation and eventual presentation 
