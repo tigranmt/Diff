@@ -110,7 +110,7 @@ impl StringDiff
 
        
 
-        ///trim strings to equal size
+        //trim strings to equal size
         let mut v   = Vec::with_capacity(512);
         if row_count > column_count {
             v.push(DiffCell{start: column_count - 1, count: row_count - column_count, operation: DiffOperation::Remove});
@@ -139,7 +139,7 @@ impl StringDiff
             self.directions =  Matrix::new(row_count, column_count);
         }
         else {
-            ///set row and column count to the current, requred size of source strings
+            //set row and column count to the current, requred size of source strings
             self.mtx.set_size(row_count, column_count);
             self.directions.set_size(row_count, column_count);
            
