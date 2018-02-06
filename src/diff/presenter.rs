@@ -16,18 +16,17 @@ impl DiffPresenter
 
     pub fn new (_w : Box<std::io::Write>) -> DiffPresenter        
     {
-        let _dp = DiffPresenter{ writer : _w };
-        _dp
+         DiffPresenter{ writer : _w }        
     }
 
     pub fn header(&mut self, _old : &str, _new : &str)-> std::result::Result<usize, std::io::Error>
     {
         let mut bytes_written = self.writer.write("/***********************************************************\n".as_bytes())?;
-        bytes_written = bytes_written + self.writer.write("* Difference between : \n".as_bytes())?;
-        bytes_written = bytes_written + self.writer.write(format!("* {} \n", _old).as_bytes())?;
-        bytes_written = bytes_written + self.writer.write("* - and - \n".as_bytes())?;
-        bytes_written = bytes_written + self.writer.write(format!("* {} \n", _new).as_bytes())?;
-        bytes_written = bytes_written + self.writer.write("***********************************************************/\n".as_bytes())?;
+        bytes_written += self.writer.write("* Difference between : \n".as_bytes())?;
+        bytes_written += self.writer.write(format!("* {} \n", _old).as_bytes())?;
+        bytes_written += self.writer.write("* - and - \n".as_bytes())?;
+        bytes_written += self.writer.write(format!("* {} \n", _new).as_bytes())?;
+        bytes_written += self.writer.write("***********************************************************/\n".as_bytes())?;
 
         Ok(bytes_written)
     }
@@ -42,19 +41,19 @@ impl DiffPresenter
             for diff in iter
             {
                 bytes_written = self.writer.write("\n".as_bytes())?;
-                bytes_written = bytes_written + self.writer.write(format!("Line: {}, ==={}===\n", line_num, diff.operation).as_bytes())?;
+                bytes_written += self.writer.write(format!("Line: {}, ==={}===\n", line_num, diff.operation).as_bytes())?;
                 
                 if diff.operation == DiffOperation::Insert  
                 {                
-                    bytes_written = bytes_written + self.present_insert(_old, _new, &diff)?;        
+                    bytes_written += self.present_insert(_old, _new, &diff)?;        
                 }
                 else if diff.operation == DiffOperation::Remove
                 {                          
-                    bytes_written = bytes_written + self.present_remove(_old, _new, &diff)?;
+                    bytes_written += self.present_remove(_old, _new, &diff)?;
                 }  
                 else if diff.operation == DiffOperation::Update
                 {                
-                    bytes_written = bytes_written + self.present_udate(_old, _new, &diff)?;
+                    bytes_written += self.present_udate(_old, _new, &diff)?;
                 }  
             }
         }
@@ -76,7 +75,7 @@ impl DiffPresenter
             {
                 if prev.start == next.start && prev.count == next.count
                 {
-                    count_to_skip = count_to_skip + 2; //skip both
+                    count_to_skip += 2; //skip both
                 }
 
             }
@@ -96,14 +95,14 @@ impl DiffPresenter
         if diff.count > 1 
         { 
             let empty_change = std::iter::repeat(" ").take(diff.count - 2).collect::<String>(); //first pipe and last one have to be skiped  
-            bytes_written = bytes_written + self.writer.write(format!("{}|{}|\n", empty_before_change, empty_change).as_bytes())?;
+            bytes_written += self.writer.write(format!("{}|{}|\n", empty_before_change, empty_change).as_bytes())?;
         }
         else {
-            bytes_written = bytes_written + self.writer.write(format!("{}|\n", empty_before_change).as_bytes())?;
+            bytes_written += self.writer.write(format!("{}|\n", empty_before_change).as_bytes())?;
         }
         
         let ins = std::iter::repeat("+").take(diff.count).collect::<String>();         
-        bytes_written = bytes_written + self.writer.write(format!("{}{}\n", empty_before_change, ins).as_bytes())?;      
+        bytes_written += self.writer.write(format!("{}{}\n", empty_before_change, ins).as_bytes())?;      
         
         Ok(bytes_written)
     }
@@ -117,14 +116,14 @@ impl DiffPresenter
         if diff.count > 1 
         { 
             let empty_change = std::iter::repeat(" ").take(diff.count - 2).collect::<String>(); //first pipe and last one have to be skiped  
-            bytes_written = bytes_written + self.writer.write(format!("{}|{}|\n", empty_before_change, empty_change).as_bytes())?;
+            bytes_written += self.writer.write(format!("{}|{}|\n", empty_before_change, empty_change).as_bytes())?;
         }
         else {
-            bytes_written = bytes_written + self.writer.write(format!("{}|\n", empty_before_change).as_bytes())?;
+            bytes_written += self.writer.write(format!("{}|\n", empty_before_change).as_bytes())?;
         }
         
         let dels = std::iter::repeat("x").take(diff.count).collect::<String>(); 
-        bytes_written = bytes_written + self.writer.write(format!("{}{}\n", empty_before_change, dels).as_bytes())?;       
+        bytes_written += self.writer.write(format!("{}{}\n", empty_before_change, dels).as_bytes())?;       
 
         Ok(bytes_written)       
     }
@@ -141,14 +140,14 @@ impl DiffPresenter
         if diff.count > 1 
         { 
             let empty_change = std::iter::repeat(" ").take(diff.count - 2).collect::<String>(); //first pipe and last one have to be skiped 
-            bytes_written = bytes_written + self.writer.write(format!("{}|{}|\n", empty_before_change, empty_change).as_bytes())?;
+            bytes_written += self.writer.write(format!("{}|{}|\n", empty_before_change, empty_change).as_bytes())?;
         }
         else 
         {
-            bytes_written = bytes_written + self.writer.write(format!("{}|\n", empty_before_change).as_bytes())?;
+            bytes_written += self.writer.write(format!("{}|\n", empty_before_change).as_bytes())?;
         }
         
-        bytes_written = bytes_written + self.writer.write(format!("{}{}\n", empty_before_change, out_new).as_bytes())?;
+        bytes_written += self.writer.write(format!("{}{}\n", empty_before_change, out_new).as_bytes())?;
         
         Ok(bytes_written)
     }
