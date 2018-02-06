@@ -89,10 +89,10 @@ fn run(arguments : &HashMap<String,String>)
         let _old = opt1.unwrap();
         let _new = opt2.unwrap();
 
-        ///Get difference 
+        //Get difference 
         let diff = sd_string.get_diff(&_old, &_new);
 
-        ///Present
+        //Present
         let _ = presenter.header(&_old, &_new);
         let _ = presenter.present(&_old, &_new, 0, &diff);
     }
@@ -126,7 +126,7 @@ fn run(arguments : &HashMap<String,String>)
          
             let mut line_num = 1;
 
-            ///Create buffers for reading files line-by-line
+            //Create buffers for reading files line-by-line
             let mut line1   = String::with_capacity(512);
             let mut line2   = String::with_capacity(512);
             let mut bufer1  = BufReader::new(file1.unwrap()); 
@@ -157,7 +157,7 @@ fn run(arguments : &HashMap<String,String>)
                 line_num = line_num + 1;             
             }
 
-            ///If first file is longer than second 
+            //If first file is longer than second 
             while res1 > 0
             {               
                 {
@@ -173,7 +173,7 @@ fn run(arguments : &HashMap<String,String>)
             }
             
 
-            ///If second file is longer than first
+            //If second file is longer than first
             while res2 > 0
             {       
                 {
