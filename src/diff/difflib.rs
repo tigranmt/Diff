@@ -107,9 +107,7 @@ impl StringDiff
 
         let mut row_count       =  _old.chars().count() + 1;  //space for 0s
         let mut column_count    =  _new.chars().count() + 1; //space for 0s
-
-       
-
+        
         //trim strings to equal size
         let mut v   = Vec::with_capacity(512);
         if row_count > column_count {
@@ -199,8 +197,10 @@ impl StringDiff
     {          
         self.init_matrix();
         
-        for (i, o_ch) in _old.chars().enumerate().take(self.mtx.r_cnt-1) {               
-            for (j, n_ch) in _new.chars().enumerate().take(self.mtx.c_cnt-1) {     
+        for (i, o_ch) in _old.chars().enumerate().take(self.mtx.r_cnt-1) 
+        {               
+            for (j, n_ch) in _new.chars().enumerate().take(self.mtx.c_cnt-1) 
+            {     
                 if o_ch == n_ch {           
                     //No change            
                     self.mtx[(i+1, j+1)] =  self.mtx[(i, j)];        
