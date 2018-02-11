@@ -25,3 +25,5 @@ target/release/.fingerprint/diff-75f99a1596bc3246/dep-bin-diff-75f99a1596bc3246
 target/release/deps/diff-75f99a1596bc3246.exe
 target/release/deps/diff-75f99a1596bc3246.pdb
 target/debug/.cargo-lock
+target/release/Com_CovD.csv
+target/release/Res_CovD.csv
